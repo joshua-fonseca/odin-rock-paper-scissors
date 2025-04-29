@@ -82,11 +82,11 @@ function playGame() {
   }
 
   if(humanScore > computerScore) {
-    console.log("player wins");
+    console.log("player wins for best of 5 match");
   } else if (humanScore < computerScore) {
-    console.log("computer wins");
+    console.log("computer wins for best of 5 match");
   } else {
-    console.log("game ends in a tie");
+    console.log("game ends in a tie for best of 5 match");
   }
 
 }
