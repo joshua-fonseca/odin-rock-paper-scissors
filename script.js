@@ -3,7 +3,7 @@
 let humanScore = 0;
 let computerScore = 0;
 
-function getComputerChoice() {
+let getComputerChoice = () => {
   let choice = Math.floor(Math.random()*3);
   return choice === 0 ?
     "rock" : choice === 1 ?
@@ -32,7 +32,7 @@ choices.addEventListener("click", (event) => {
   checkScore();
 });
 
-function checkScore() {
+let checkScore = () => {
     if(humanScore === 5) {
       console.log("player wins as they reached 5 points");
       disableButtons();
@@ -42,12 +42,12 @@ function checkScore() {
     }
 }
 
-function disableButtons() {
+let disableButtons = () => {
   const buttons = choices.querySelectorAll("button");
   buttons.forEach(button => button.disabled = true);
 }
 
-function playRound(humanChoice, computerChoice) {
+let playRound = (humanChoice, computerChoice) => {
   // console.log(`player chose: ${humanChoice}, computer chose: ${computerChoice}`);
   // win logic
   if (humanChoice === computerChoice) {
@@ -56,8 +56,7 @@ function playRound(humanChoice, computerChoice) {
   }
   if(humanChoice === "rock" && computerChoice === "scissors"
     || humanChoice === "paper" && computerChoice === "rock"
-    || humanChoice === "scissors" && computerChoice === "paper"
-  ) {
+    || humanChoice === "scissors" && computerChoice === "paper") {
     console.log("player wins");
     humanScore++;
   } else {
