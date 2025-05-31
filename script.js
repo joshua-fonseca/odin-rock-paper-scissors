@@ -2,6 +2,12 @@
 
 let humanScore = 0;
 let computerScore = 0;
+let gameOver = false;
+
+const choices = document.querySelector("#choices");
+const playerText = document.querySelector("#player-score")
+const computerText = document.querySelector("#computer-score")
+const gameMessage = document.querySelector("#game-status")
 
 let getComputerChoice = () => {
   let choice = Math.floor(Math.random()*3);
@@ -11,33 +17,29 @@ let getComputerChoice = () => {
 }
 
 // event listener
-const choices = document.querySelector("#choices");
 choices.addEventListener("click", (event) => {
+  if (gameOver) return;
+
   let playerSelection = "";
 
   switch(event.target.id) {
     case "rock":
-      playerSelection = "rock";
-      break;
     case "paper":
-      playerSelection = "paper";
-      break;
     case "scissors":
-      playerSelection = "scissors";
+      playerSelection = event.target.id;
       break;
+    default:
+      return; // clicked something else
   }
 
   playRound(playerSelection, getComputerChoice());
-
   checkScore();
 });
 
 let checkScore = () => {
-    if(humanScore === 5) {
-      console.log("player wins as they reached 5 points");
-      disableButtons();
-    } else if (computerScore === 5) {
-      console.log("computer wins as they reached 5 points");
+    if(humanScore === 5 || computerScore === 5) {
+      gameMessage.textContent = humanScore === 5 ? "Player wins!" : "Computer wins!";
+      gameOver = true;
       disableButtons();
     }
 }
@@ -51,16 +53,19 @@ let playRound = (humanChoice, computerChoice) => {
   // console.log(`player chose: ${humanChoice}, computer chose: ${computerChoice}`);
   // win logic
   if (humanChoice === computerChoice) {
-    console.log("tie");
+    gameMessage.textContent = "tie!";
     return;
   }
   if(humanChoice === "rock" && computerChoice === "scissors"
     || humanChoice === "paper" && computerChoice === "rock"
     || humanChoice === "scissors" && computerChoice === "paper") {
-    console.log("player wins");
+    // console.log("player wins");
+    gameMessage.textContent = "player won this round!";
     humanScore++;
+    playerText.textContent = humanScore;
   } else {
-    console.log("computer wins");
+    gameMessage.textContent = "computer won this round!";
     computerScore++;
+    computerText.textContent = computerScore;
   }
 }
