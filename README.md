@@ -7,3 +7,5 @@
 Demonstrates my Javascript knowledge I've acquired
 
 - Includes my problem solving/pseudocode making abilities as well
+
+See the project live [here](https://joshua-fonseca.github.io/odin-rock-paper-scissors/)
