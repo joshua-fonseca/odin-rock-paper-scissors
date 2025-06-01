@@ -8,6 +8,8 @@ const choices = document.querySelector("#choices");
 const playerText = document.querySelector("#player-score")
 const computerText = document.querySelector("#computer-score")
 const gameMessage = document.querySelector("#game-status")
+const playerThrow = document.querySelector("#player-choice")
+const computerThrow = document.querySelector("#computer-choice")
 
 let getComputerChoice = () => {
   let choice = Math.floor(Math.random()*3);
@@ -51,6 +53,9 @@ let disableButtons = () => {
 
 let playRound = (humanChoice, computerChoice) => {
   // console.log(`player chose: ${humanChoice}, computer chose: ${computerChoice}`);
+  playerThrow.textContent = humanChoice;
+  computerThrow.textContent = computerChoice;
+
   // win logic
   if (humanChoice === computerChoice) {
     gameMessage.textContent = "tie!";
